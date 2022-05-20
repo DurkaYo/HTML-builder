@@ -1,10 +1,9 @@
-const folderName = '01-read-file';
 const nameFile = 'text.txt'
 
 const fs = require('fs');
 const path = require('path');
 
-const absolutePath = path.resolve(folderName, nameFile);
+const absolutePath = path.join(__dirname, nameFile);
 
 const rsFile = fs.createReadStream(absolutePath, 'utf-8');
 
