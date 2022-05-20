@@ -1,13 +1,12 @@
-const note = './'
 const folderName = '01-read-file';
 const nameFile = 'text.txt'
 
 const fs = require('fs');
 const path = require('path');
 
-const actualFile = path.join(note, folderName, nameFile);
+const absolutePath = path.resolve(folderName, nameFile);
 
-const rsFile = fs.createReadStream(actualFile, 'utf-8');
+const rsFile = fs.createReadStream(absolutePath, 'utf-8');
 
 rsFile.on('readable', () => {
     const data = rsFile.read();
