@@ -10,8 +10,6 @@ const writePath = path.join(__dirname, nameFile);
 const input = process.stdin;
 const output = process.stdout;
 
-let message = ''
-
 const rl = readline.createInterface({input, output});
 
 console.log('Приветствую!\nДля выхода нажмите "ctrl-c" или введите в строке "exit"');
@@ -22,7 +20,9 @@ process.on('exit', (code) => {
 
 
 rl.question('Тут что-то можно написать:\n', (answer) => {
-    message = answer;
+    fs.writeFile(writePath, answer, (error) => {
+        if(error) throw error;
+    })
 });
 
 rl.on('line', (input) => {
@@ -31,16 +31,13 @@ rl.on('line', (input) => {
     if (input === 'exit') {
         rl.close();
     } else {
-        message += write;
+        fs.appendFile(writePath, write, (error) => {
+            if(error) throw error;
+        })
     }
 });
 
 rl.on('close', () => {
     console.log(`\nВсе написанное записано в файл ${nameFile}`);
-
-    fs.writeFile(writePath, message, (error) => {
-        if(error) throw error;
-    })
-
     rl.close();
 })
