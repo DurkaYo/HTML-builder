@@ -14,14 +14,14 @@ let message = ''
 
 const rl = readline.createInterface({input, output});
 
-console.log('Приветствую!');
+console.log('Приветствую!\nДля выхода нажмите "ctrl-c" или введите в строке "exit"');
 
 process.on('exit', (code) => {
     console.log('\nВыходим, до свидания.');
 })
 
 
-rl.question('Тут что-то можно написать: ', (answer) => {
+rl.question('Тут что-то можно написать:\n', (answer) => {
     message = answer;
 });
 
